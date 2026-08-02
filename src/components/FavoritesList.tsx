@@ -1,22 +1,21 @@
 import type { HistoryEntry } from '../types';
 
-interface HistoryListProps {
-  history: HistoryEntry[];
+interface FavoritesListProps {
+  favorites: HistoryEntry[];
   onSelect: (entry: HistoryEntry) => void;
   onRemove: (vin: string) => void;
-  onAddFavorite: (entry: HistoryEntry) => void;
 }
 
-export function HistoryList({ history, onSelect, onRemove, onAddFavorite }: HistoryListProps) {
-  if (history.length === 0) {
+export function FavoritesList({ favorites, onSelect, onRemove }: FavoritesListProps) {
+  if (favorites.length === 0) {
     return null;
   }
 
   return (
-    <div className="entry-list" aria-label="Історія останніх розшифровок">
-      <h2 className="entry-list__title">Останні розшифровані VIN</h2>
+    <div className="entry-list" aria-label="Обрані VIN-коди">
+      <h2 className="entry-list__title">Обрані VIN</h2>
       <ul className="entry-list__list">
-        {history.map((entry) => (
+        {favorites.map((entry) => (
           <li key={entry.vin} className="entry-list__item-wrapper">
             <button
               type="button"
@@ -24,20 +23,12 @@ export function HistoryList({ history, onSelect, onRemove, onAddFavorite }: Hist
               onClick={() => onSelect(entry)}
               title={new Date(entry.decodedAt).toLocaleString()}
             ></button>
-            <button
-              type="button"
-              className="entry-list__icon-btn entry-list__icon-btn--favorite"
-              onClick={() => onAddFavorite(entry)}
-              aria-label={`Додати ${entry.vin} в обране`}
-            >
-              ★
-            </button>
             <p className="entry-list__name">{entry.vin}</p>
             <button
               type="button"
               className="entry-list__icon-btn entry-list__icon-btn--remove"
               onClick={() => onRemove(entry.vin)}
-              aria-label={`Видалити ${entry.vin} з історії`}
+              aria-label={`Видалити ${entry.vin} з обраного`}
             >
               ×
             </button>

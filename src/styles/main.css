@@ -84,18 +84,18 @@
   }
 }
 
-/* history */
+/* entry-list */
 
-.history {
+.entry-list {
   margin-block-end: var(--gap);
 }
 
-.history__title {
+.entry-list__title {
   font-size: 20px;
   margin-block-end: 10px;
 }
 
-.history__list {
+.entry-list__list {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
@@ -104,28 +104,49 @@
   padding: 0;
 }
 
-.history__item {
+.entry-list__item-wrapper {
+  position: relative;
+  min-width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   border: 1px solid var(--color-border);
   background-color: var(--color-surface);
   border-radius: 20px;
-  padding: 5px 10px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: border-color 0.3s ease, color 0.3s ease;
+  padding: 5px 7px;
+  transition: border-color 0.3s ease;
+  overflow: hidden;
 }
 
-.history__item:hover {
+.entry-list__item-wrapper:hover {
+  --icon-btn-position: 4px;
+
   border-color: var(--color-primary);
-  color: var(--color-primary);
 }
 
-.history__item-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 5px;
+.entry-list__link {
+  position: absolute;
+  inset: 0;
+  background: none;
+  border: none;
+  opacity: 0;
+  font-size: 0;
+  cursor: pointer;
 }
 
-.history__remove {
+.entry-list__name {
+  flex: 1 1 auto;
+  text-align: center;
+  font-size: 14px;
+  margin: 0;
+}
+
+.entry-list__icon-btn {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
   display: grid;
   place-items: center;
   min-width: 24px;
@@ -137,12 +158,32 @@
   color: var(--color-text-muted);
   cursor: pointer;
   font-size: 14px;
-  transition: border-color 0.3s ease, color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-.history__remove:hover {
+@media (max-width: 1024px) {
+  .entry-list__icon-btn {
+    position: static;
+    transform: none;
+  }
+}
+
+.entry-list__icon-btn--remove {
+  right: var(--icon-btn-position, -30px);
+}
+
+.entry-list__icon-btn--remove:hover {
   border-color: var(--color-error);
   color: var(--color-error);
+}
+
+.entry-list__icon-btn--favorite {
+  left: var(--icon-btn-position, -30px);
+}
+
+.entry-list__icon-btn--favorite:hover {
+  border-color: var(--color-favorite);
+  color: var(--color-favorite);
 }
 
 /* results */

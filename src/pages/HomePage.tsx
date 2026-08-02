@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { decodeVin } from '../api/nhtsa';
+import { FavoritesList } from '../components/FavoritesList';
 import { HistoryList } from '../components/HistoryList';
 import { Loader } from '../components/Loader';
 import { ResultsList } from '../components/ResultsList';
 import { VinForm } from '../components/VinForm';
+import { useVinFavorites } from '../hooks/useVinFavorites';
 import { useVinHistory } from '../hooks/useVinHistory';
 import type { DecodeVinResultItem, HistoryEntry } from '../types';
 
 export function HomePage() {
   const { history, addEntry, removeEntry } = useVinHistory();
+  const { favorites, addFavorite, removeFavorite } = useVinFavorites();
   const [currentVin, setCurrentVin] = useState('');
   const [results, setResults] = useState<DecodeVinResultItem[]>([]);
   const [apiMessage, setApiMessage] = useState<string | null>(null);
@@ -72,6 +75,13 @@ export function HomePage() {
           history={history}
           onSelect={handleHistorySelect}
           onRemove={removeEntry}
+          onAddFavorite={addFavorite}
+        />
+
+        <FavoritesList
+          favorites={favorites}
+          onSelect={handleHistorySelect}
+          onRemove={removeFavorite}
         />
 
         {results.length > 0 && (

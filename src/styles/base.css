@@ -86,7 +86,8 @@ a {
   padding: 15px;
   color: var(--color-white);
   font-size: 16px;
-  background-color: color-mix(in srgb, var(--color-black) 50%, transparent);
+  background-color: color-mix(in srgb, var(--color-black) 70%, transparent);
+  z-index: 10;
 }
 
 .loader__icon {
