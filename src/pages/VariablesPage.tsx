@@ -1,0 +1,53 @@
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { getVehicleVariables } from '../api/nhtsa';
+import type { VehicleVariable } from '../types';
+
+export function VariablesPage() {
+  const [variables, setVariables] = useState<VehicleVariable[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    setIsLoading(true);
+    getVehicleVariables()
+      .then((data) => {
+        if (!cancelled) setVariables(data);
+      })
+      .catch((err) => {
+        if (!cancelled) {
+          setError(err instanceof Error ? err.message : 'Невідома помилка.');
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setIsLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  return (
+    <section className="variables-section">
+      <div className="container">
+        <h1>Список змінних VIN</h1>
+        {isLoading && <p>Завантаження…</p>}
+        {error && (
+          <p className="variables-section__error" role="alert">
+            {error}
+          </p>
+        )}
+        {!isLoading && !error && (
+          <ul className="variables-section__list">
+            {variables.map((variable) => (
+              <li key={variable.ID}>
+                <Link to={`/variables/${variable.ID}`}>{variable.Name}</Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </section>
+  );
+}

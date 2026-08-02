@@ -1,0 +1,16 @@
+:root {
+  --color-black: #000000;
+  --color-bg: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-border: #d9dce1;
+  --color-text: #1c1f26;
+  --color-text-muted: #5b6270;
+  --color-primary: #2457c5;
+  --color-primary-dark: #1a418f;
+  --color-error: #b3261e;
+  --color-error-bg: #fbeaea;
+  --color-message-bg: #eaf1ff;
+  --radius: 8px;
+  --gap: 20px;
+  --max-content-width: 1440px;
+}
