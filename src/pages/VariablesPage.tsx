@@ -31,8 +31,8 @@ export function VariablesPage() {
   return (
     <section className="variables-section">
       <div className="container">
-        <h1>Список змінних VIN</h1>
-        {isLoading && <p>Завантаження…</p>}
+        <h1 className='title'>Список змінних VIN</h1>
+        {isLoading && <p className='text'>Завантаження…</p>}
         {error && (
           <p className="variables-section__error" role="alert">
             {error}
@@ -41,8 +41,8 @@ export function VariablesPage() {
         {!isLoading && !error && (
           <ul className="variables-section__list">
             {variables.map((variable) => (
-              <li key={variable.ID}>
-                <Link to={`/variables/${variable.ID}`}>{variable.Name}</Link>
+              <li className='variables-section__item' key={variable.ID}>
+                <Link className='variables-section__link' to={`/variables/${variable.ID}`}>{variable.Name}</Link>
               </li>
             ))}
           </ul>

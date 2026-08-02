@@ -37,26 +37,28 @@ export function VariableDetailPage() {
   }, [variableId]);
 
   return (
-    <section className="variable-detail-page">
-      <p>
-        <Link to="/variables">&larr; Усі змінні</Link>
-      </p>
-      {isLoading && <p>Завантаження…</p>}
-      {error && (
-        <p className="variable-detail-page__error" role="alert">
-          {error}
+    <section className="variable-detail-section">
+      <div className='container'>
+        <p className='text'>
+          <Link className='link' to="/variables">&larr; Назад</Link>
         </p>
-      )}
-      {variable && (
-        <>
-          <h1>{variable.Name}</h1>
-          <dl className="variable-detail-page__meta">
-            <dt>Ідентифікатор</dt>
-            <dd>{variable.ID}</dd>
-          </dl>
-          <p>{stripHtml(variable.Description) || 'Опис відсутній.'}</p>
-        </>
-      )}
+        {isLoading && <p>Завантаження…</p>}
+        {error && (
+          <p className="variable-detail-section__error" role="alert">
+            {error}
+          </p>
+        )}
+        {variable && (
+          <>
+            <h1 className='title'>{variable.Name}</h1>
+            <dl className="variable-detail-section__meta">
+              <dt className='variable-detail-section__name'>Ідентифікатор</dt>
+              <dd className='variable-detail-section__id'>{variable.ID}</dd>
+            </dl>
+            <p className='variable-detail-section__descriptions'>{stripHtml(variable.Description) || 'Опис відсутній.'}</p>
+          </>
+        )}
+      </div>
     </section>
   );
 }
