@@ -25,7 +25,7 @@ export interface VehicleVariableListResponse {
   Results: VehicleVariable[];
 }
 
-export interface HistoryEntry {
+export interface VinEntry {
   vin: string;
   message: string;
   results: DecodeVinResultItem[];

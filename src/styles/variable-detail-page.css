@@ -1,0 +1,13 @@
+.variable-detail-section__meta {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.variable-detail-section__name {
+  font-weight: 600;
+}
+
+.variable-detail-section__id {
+  margin: 0;
+}

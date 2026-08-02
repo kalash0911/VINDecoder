@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { decodeVin } from '../api/nhtsa';
+import { Alert } from '../components/Alert';
 import { FavoritesList } from '../components/FavoritesList';
 import { HistoryList } from '../components/HistoryList';
 import { Loader } from '../components/Loader';
@@ -7,7 +8,8 @@ import { ResultsList } from '../components/ResultsList';
 import { VinForm } from '../components/VinForm';
 import { useVinFavorites } from '../hooks/useVinFavorites';
 import { useVinHistory } from '../hooks/useVinHistory';
-import type { DecodeVinResultItem, HistoryEntry } from '../types';
+import '../styles/home-page.css';
+import type { DecodeVinResultItem, VinEntry } from '../types';
 
 export function HomePage() {
   const { history, addEntry, removeEntry } = useVinHistory();
@@ -27,7 +29,7 @@ export function HomePage() {
       setCurrentVin(vin);
       setResults(data.Results);
       setApiMessage(data.Message);
-      const entry: HistoryEntry = {
+      const entry: VinEntry = {
         vin,
         message: data.Message,
         results: data.Results,
@@ -42,7 +44,7 @@ export function HomePage() {
     }
   }
 
-  function handleHistorySelect(entry: HistoryEntry) {
+  function handleHistorySelect(entry: VinEntry) {
     setCurrentVin(entry.vin);
     setResults(entry.results);
     setApiMessage(entry.message);
@@ -62,14 +64,8 @@ export function HomePage() {
 
         {isLoading && <Loader />}
 
-        {apiError && (
-          <p className="main-section__error" role="alert">
-            {apiError}
-          </p>
-        )}
-        {!apiError && apiMessage && (
-          <p className="main-section__message">{apiMessage}</p>
-        )}
+        {apiError && <Alert variant="error">{apiError}</Alert>}
+        {!apiError && apiMessage && <Alert variant="info">{apiMessage}</Alert>}
 
         <HistoryList
           history={history}

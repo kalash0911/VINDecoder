@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getVehicleVariables } from '../api/nhtsa';
+import { Alert } from '../components/Alert';
 import { Loader } from '../components/Loader';
+import '../styles/variables-page.css';
 import type { VehicleVariable } from '../types';
 
 export function VariablesPage() {
@@ -34,11 +36,7 @@ export function VariablesPage() {
       <div className="container">
         <h1 className='title'>Список змінних VIN</h1>
         {isLoading && <Loader label="Завантаження…" />}
-        {error && (
-          <p className="variables-section__error" role="alert">
-            {error}
-          </p>
-        )}
+        {error && <Alert variant="error">{error}</Alert>}
         {!isLoading && !error && (
           <ul className="variables-section__list">
             {variables.map((variable) => (

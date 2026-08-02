@@ -1,49 +1,24 @@
-import type { HistoryEntry } from '../types';
+import type { VinEntry } from '../types';
+import { VinEntryList } from './VinEntryList';
 
 interface HistoryListProps {
-  history: HistoryEntry[];
-  onSelect: (entry: HistoryEntry) => void;
+  history: VinEntry[];
+  onSelect: (entry: VinEntry) => void;
   onRemove: (vin: string) => void;
-  onAddFavorite: (entry: HistoryEntry) => void;
+  onAddFavorite: (entry: VinEntry) => void;
 }
 
 export function HistoryList({ history, onSelect, onRemove, onAddFavorite }: HistoryListProps) {
-  if (history.length === 0) {
-    return null;
-  }
-
   return (
-    <div className="entry-list" aria-label="Історія останніх розшифровок">
-      <h2 className="entry-list__title">Останні розшифровані VIN</h2>
-      <ul className="entry-list__list">
-        {history.map((entry) => (
-          <li key={entry.vin} className="entry-list__item-wrapper">
-            <button
-              type="button"
-              className="entry-list__link"
-              onClick={() => onSelect(entry)}
-              title={new Date(entry.decodedAt).toLocaleString()}
-            ></button>
-            <button
-              type="button"
-              className="entry-list__icon-btn entry-list__icon-btn--favorite"
-              onClick={() => onAddFavorite(entry)}
-              aria-label={`Додати ${entry.vin} в обране`}
-            >
-              ★
-            </button>
-            <p className="entry-list__name">{entry.vin}</p>
-            <button
-              type="button"
-              className="entry-list__icon-btn entry-list__icon-btn--remove"
-              onClick={() => onRemove(entry.vin)}
-              aria-label={`Видалити ${entry.vin} з історії`}
-            >
-              ×
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <VinEntryList
+      ariaLabel="Історія останніх розшифровок"
+      title="Останні розшифровані VIN"
+      entries={history}
+      onSelect={onSelect}
+      onRemove={onRemove}
+      removeLabel={(vin) => `Видалити ${vin} з історії`}
+      onFavorite={onAddFavorite}
+      favoriteLabel={(vin) => `Додати ${vin} в обране`}
+    />
   );
 }

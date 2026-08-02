@@ -1,4 +1,5 @@
 import { FormEvent, useState } from 'react';
+import '../styles/vin-form.css';
 import { validateVin } from '../utils/validateVin';
 
 interface VinFormProps {

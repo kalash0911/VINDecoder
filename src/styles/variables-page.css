@@ -1,0 +1,27 @@
+.variables-section__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.variables-section__item {
+  display: flex;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition: background-color .3s ease, border .3s ease;
+}
+
+.variables-section__item:hover {
+  background-color: var(--color-message-bg);
+  border: 1px solid var(--color-primary);
+}
+
+.variables-section__link {
+  flex: 1 1 auto;
+  padding: 15px 20px;
+  text-decoration: none;
+}

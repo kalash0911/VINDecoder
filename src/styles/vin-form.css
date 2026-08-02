@@ -1,0 +1,46 @@
+.vin-form {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--gap);
+  margin-block-end: var(--gap);
+}
+
+.vin-form__label {
+  display: block;
+  font-weight: 600;
+  margin-block-end: 10px;
+}
+
+.vin-form__row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.vin-form__input {
+  flex: 1 1 260px;
+  min-width: 0;
+  padding: 10px 15px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.vin-form__input:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+.vin-form__error {
+  margin: 10px 0 0;
+  color: var(--color-error);
+}
+
+@media (max-width: 640px) {
+  .vin-form__error {
+    text-align: center;
+  }
+}

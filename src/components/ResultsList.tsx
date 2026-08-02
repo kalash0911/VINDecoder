@@ -1,3 +1,4 @@
+import '../styles/results-list.css';
 import type { DecodeVinResultItem } from '../types';
 
 interface ResultsListProps {

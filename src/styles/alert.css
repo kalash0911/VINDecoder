@@ -1,0 +1,21 @@
+.alert {
+  margin: 0;
+  border-radius: var(--radius);
+  padding: 10px 15px;
+  font-size: 16px;
+}
+
+@media (max-width: 640px) {
+  .alert {
+    font-size: 14px;
+  }
+}
+
+.alert--error {
+  background-color: var(--color-error-bg);
+  color: var(--color-error);
+}
+
+.alert--info {
+  background-color: var(--color-message-bg);
+}

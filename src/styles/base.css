@@ -36,7 +36,7 @@ a {
   padding: 10px 20px;
   border: none;
   border-radius: var(--radius);
-  font-size: 1rem;
+  font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -71,32 +71,5 @@ a {
 @media (max-width: 640px) {
   .title {
     font-size: 20px;
-  }
-}
-
-/* loader */
-
-.loader {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 15px;
-  color: var(--color-white);
-  font-size: 16px;
-  background-color: color-mix(in srgb, var(--color-black) 70%, transparent);
-  z-index: 10;
-}
-
-.loader__icon {
-  animation: loader-spin 1.2s linear infinite;
-  flex: 0 0 auto;
-}
-
-@keyframes loader-spin {
-  to {
-    transform: rotate(360deg);
   }
 }

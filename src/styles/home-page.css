@@ -1,0 +1,9 @@
+.main-section__title {
+  font-size: 30px;
+}
+
+@media (max-width: 640px) {
+  .main-section__title {
+    font-size: 24px;
+  }
+}
