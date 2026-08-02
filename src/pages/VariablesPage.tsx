@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getVehicleVariables } from '../api/nhtsa';
+import { Loader } from '../components/Loader';
 import type { VehicleVariable } from '../types';
 
 export function VariablesPage() {
@@ -32,7 +33,7 @@ export function VariablesPage() {
     <section className="variables-section">
       <div className="container">
         <h1 className='title'>Список змінних VIN</h1>
-        {isLoading && <p className='text'>Завантаження…</p>}
+        {isLoading && <Loader label="Завантаження…" />}
         {error && (
           <p className="variables-section__error" role="alert">
             {error}

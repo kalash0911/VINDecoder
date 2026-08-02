@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getVehicleVariables } from '../api/nhtsa';
+import { Loader } from '../components/Loader';
 import type { VehicleVariable } from '../types';
 import { stripHtml } from '../utils/stripHtml';
 
@@ -42,7 +43,7 @@ export function VariableDetailPage() {
         <p className='text'>
           <Link className='link' to="/variables">&larr; Назад</Link>
         </p>
-        {isLoading && <p>Завантаження…</p>}
+        {isLoading && <Loader label="Завантаження…" />}
         {error && (
           <p className="variable-detail-section__error" role="alert">
             {error}
