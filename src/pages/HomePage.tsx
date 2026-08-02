@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { decodeVin } from '../api/nhtsa';
 import { HistoryList } from '../components/HistoryList';
+import { Loader } from '../components/Loader';
 import { ResultsList } from '../components/ResultsList';
 import { VinForm } from '../components/VinForm';
 import { useVinHistory } from '../hooks/useVinHistory';
@@ -55,6 +56,8 @@ export function HomePage() {
           isLoading={isLoading}
           onSubmit={handleDecode}
         />
+
+        {isLoading && <Loader />}
 
         {apiError && (
           <p className="main-section__error" role="alert">
